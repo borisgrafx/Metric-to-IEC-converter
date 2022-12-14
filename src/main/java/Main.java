@@ -6,7 +6,7 @@ public class Main {
     public static boolean isMetric = true;
     public static int biteSum = 0; //Use me in Issue 4
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         try {
             if (args.length == 0)
@@ -21,7 +21,6 @@ public class Main {
                             throw new Exception("Wrong format. Try these:\nКб, Мб, Гб, Тб, Пб, Kb, Mb, Gb, Tb, Pb");
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
@@ -42,8 +41,11 @@ public class Main {
             }
 
         }
-
-        metricToIEC(in[0], vals[0]);
+        if (!isNothingWrong(vals)) throw new Exception("Decide which side to convert to!");
+        if(isMetric)
+            metricToIEC(in[0], vals[0]);
+        else
+            iecToMetric(in[0], vals[0]);
     }
 
     public static void metricToIEC(Double data, String val) {
@@ -57,7 +59,8 @@ public class Main {
     }
 
     public static void iecToMetric(Double data, String val) {
-        // Use me in Issue 3
+        double out = data / 1024 * 1000;
+        System.out.println(data + " " + val + " = " + out + " " + val.toCharArray()[0] +  val.toCharArray()[2]);
     }
 
     public static boolean isOK(String inf) {
@@ -76,6 +79,18 @@ public class Main {
             double d = Double.parseDouble(strNum);
         } catch (NumberFormatException nfe) {
             return false;
+        }
+        return true;
+    }
+
+    public static boolean isNothingWrong(String[] curVals) {
+        for (String curVal : curVals) {
+            if ((curVal.toCharArray()[1] == 'i' || curVal.toCharArray()[1] == 'I' ||
+                    curVal.toCharArray()[1] == 'и' || curVal.toCharArray()[1] == 'И') && isMetric)
+                return false;
+            if ((curVal.toCharArray()[1] != 'i' && curVal.toCharArray()[1] != 'I' &&
+                    curVal.toCharArray()[1] != 'и' & curVal.toCharArray()[1] != 'И') && !isMetric)
+                return false;
         }
         return true;
     }
