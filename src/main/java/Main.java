@@ -1,14 +1,12 @@
 
-
 public class Main {
     public static String[] ok = {"КБ", "МБ", "ГБ", "ТБ", "ПБ", "KB", "MB", "GB", "TB", "PB",
-            "КИБ", "МИБ", "ГИБ", "ТИБ","ПИБ", "KIB", "MIB", "GIB", "TIB", "PIB"};
+            "КИБ", "МИБ", "ГИБ", "ТИБ", "ПИБ", "KIB", "MIB", "GIB", "TIB", "PIB"};
     public static boolean isMetric = true;
     public static long byteSum = 0;
     public static boolean useNewFormat = true;
 
     public static void main(String[] args) throws Exception {
-
         try {
             if (args.length == 0)
                 throw new Exception("No input given");
@@ -17,8 +15,7 @@ public class Main {
                     if (i % 2 == 0)
                         if (!isNumeric(args[i]))
                             throw new Exception("NaN");
-                        else
-                        if (!isOK(args[i + 1]))
+                        else if (!isOK(args[i + 1]))
                             throw new Exception("Wrong format. Try these:\nКб, Мб, Гб, Тб, Пб, Kb, Mb, Gb, Tb, Pb," +
                                     "Киб, Миб, Гиб, Тиб, Пиб, Kib, Mib, Gib, Tib, Pib");
                 }
@@ -172,7 +169,7 @@ public class Main {
 
     public static void iecToMetric(Double data, String val) {
         double out = data / 1024 * 1000;
-        System.out.println(data + " " + val + " = " + out + " " + val.toCharArray()[0] +  val.toCharArray()[2]);
+        System.out.println(data + " " + val + " = " + out + " " + val.toCharArray()[0] + val.toCharArray()[2]);
     }
 
     public static boolean isOK(String inf) {
@@ -184,6 +181,7 @@ public class Main {
         }
         return false;
     }
+
     public static boolean isNumeric(String strNum) {
         if (strNum == null)
             return false;
