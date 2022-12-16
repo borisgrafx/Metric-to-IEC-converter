@@ -3,7 +3,7 @@ import org.mockito.ArgumentCaptor;
 
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -31,11 +31,11 @@ public class Tester {
 
     @Test
     void rusLightTest() throws Exception {
-        Main.main(new String[]{"10", "кб"});
+        Main.main(new String[]{"10", "киб"});
         PrintStream stream = mock(PrintStream.class);
         ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
         System.setOut(stream);
-        String params = "9 KiB 784 B";
+        String params = "10 KB 240 B";
         System.out.println(params);
         verify(stream).println(captor.capture());
         assertEquals(captor.getValue(), params);
@@ -48,6 +48,14 @@ public class Tester {
         System.out.println(params);
         verify(stream).println(captor.capture());
         assertEquals(captor.getValue(), params);
+    }
+
+    @Test
+    void crashMe() {
+        Exception exception = assertThrows(NumberFormatException.class, () -> Main.main(new String[]{"10кб"}));
+        String expectedMessage = "For input string: \"10кб\"";
+        String actualMessage = exception.getMessage();
+        assertTrue(actualMessage.contains(expectedMessage));
     }
 }
 

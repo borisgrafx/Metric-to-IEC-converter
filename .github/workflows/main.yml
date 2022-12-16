@@ -5,12 +5,10 @@ on:
     branches:
       - main
       - develop
-      - feature/providePipeline
   pull_request:
     branches:
       - main
       - develop
-      - feature/providePipeline
   workflow_dispatch:
 
 jobs:
