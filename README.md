@@ -1,3 +1,5 @@
+![Build Status](https://github.com/borisgrafx/Metric-to-IEC-converter/actions/workflows/main.yml/badge.svg?branch=develop) (develop)
+![Build Status](https://github.com/borisgrafx/Metric-to-IEC-converter/actions/workflows/main.yml/badge.svg?branch=main) (main)
 # Metric-to-IEC-converter
 Сервис, конвертирующий Килобайты в Кибибайты, Мегабайты в Мибибайты и т.д.
 # Запуск программы
